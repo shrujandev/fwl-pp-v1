@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -27,6 +28,7 @@ def upload():
             return Response(status=400)
         else :
             # upload data to db
+            data['timestamp'] = str(datetime.now())
             db.collection(u'sensordata').document().set(data)         
             return Response(json.dumps(data), mimetype='application/json', status=200)
     return 'NOT POST'
