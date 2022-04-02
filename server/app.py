@@ -18,13 +18,18 @@ firebase_admin.initialize_app(cred, {
 db = firestore.client()
 
 
+@app.route('/')
+def hello():
+    return 'Hello World!'
+
 @app.route('/upload', methods=['POST'])
 def upload():
     if (request.method == 'POST'):
         data = request.get_json()
 
         # validate data
-        if (not data.get('rfid') or not data.get('laser') or not data.get('force')):
+        keys = data.keys()
+        if ('rfid' not in keys or 'laser' not in keys or 'force' not in keys or 'unlocked' not in keys):
             return Response(status=400)
         else :
             # upload data to db
