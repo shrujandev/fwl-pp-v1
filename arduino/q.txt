@@ -1,0 +1,7 @@
+static void manageLaser();
+static void manageLDR();
+static void manageLED();
+static void manageRFID();
+static void alertBREACH();
+static void unlockRFID(char * id);
+static void lockSystem(char * id);
